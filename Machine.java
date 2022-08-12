@@ -1,55 +1,74 @@
 import lombok.Builder;
 
-@Builder
+import java.util.Objects;
+
 public class Machine {
 
-    String name;
+    private final String name;
+    private int fuel = 150;
+    private Engine engine;
 
-    int fuel = 150;
-    Engine engine;
-
-    @Builder
-    Machine()
-    {
-        engine = Engine.builder()
-                .build();
-        this.name = "Unstated";
-    }
-    @Builder
-    Machine(String name)
-    {
-        engine = Engine.builder()
-                .build();
-        this.name = name;
+    public String getName() {
+        return name;
     }
 
-    @Builder
-    Machine(String name, String engine_name)
-    {
-        engine = Engine.builder()
-                .name(engine_name)
-                .build();
-
-        this.name = name;
-    }
-    @Builder
-    Machine(String name, Integer engine_force)
-    {
-        engine = Engine.builder()
-                .force_power(engine_force)
-                .build();
-        this.name = name;
+    public Engine getEngine() {
+        return engine;
     }
 
-    @Builder
-    Machine(String name, String engine_name, Integer engine_force)
-    {
-        engine = Engine.builder()
-                .name(engine_name)
-                .force_power(engine_force)
-                .build();
-        this.name = name;
+    public int getFuel() {
+        return fuel;
     }
+
+    private Machine(Builder builder){
+        this.name = Objects.requireNonNull(builder.name, "name");
+        this.fuel = Objects.requireNonNull(builder.fuel, "fuel_amount");
+        this.engine = builder.engine;
+    }
+
+    public static class Builder
+    {
+        private String name;
+        private int fuel = 150;
+        private Engine engine;
+        private String engine_name;
+        private Integer force_power;
+
+        public Builder name (String name){
+            this.name = name;
+            return this;
+        }
+        public Builder fuel (int fuel){
+            if (fuel>0) this.fuel = fuel;
+            return this;
+        }
+        public Builder engine_name(String name)
+        {
+            this.engine_name = name;
+            return this;
+        }
+        public Builder force_power(Integer force_power)
+        {
+            this.force_power = force_power;
+            return this;
+        }
+//        public Builder engine_name(String name, Integer force_power)
+//        {
+//            this.engine = new Engine.Builder()
+//                    .force_power(force_power)
+//                    .name(name)
+//                    .build();
+//            return this;
+//        }
+
+        public Machine build(){
+            this.engine = new Engine.Builder()
+                    .name(this.engine_name)
+                    .force_power(force_power)
+                    .build();
+            return new Machine(this); }
+    }
+
 
     public void fill(int gasAmount)
     {
@@ -72,7 +91,9 @@ public class Machine {
 
     public void info()
     {
-        System.out.println("Engine: "+this.name+". Force: "+this.engine.force_power+". Fuel: "+this.fuel);
+        System.out.println("Name: "+this.getName()+". Fuel: "+this.getFuel());
+
+        System.out.println("Engine: "+this.engine.getName()+". Force: "+this.engine.getForce_power());
     }
 
 

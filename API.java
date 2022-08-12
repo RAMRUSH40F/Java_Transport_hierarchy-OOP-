@@ -1,8 +1,8 @@
 public class API {
     public static void main(String[] argz){
 
-    // Test Engine class
-        Engine LexusRT20 = new Engine.Builder()
+                    /* TEST Engine CLASS */
+        /* Engine LexusRT20 = new Engine.Builder()
                 .name("LexusRT20")
                 .force_power(600)
                 .started(false)
@@ -11,6 +11,23 @@ public class API {
         LexusRT20.start();
         LexusRT20.info();
         LexusRT20.stop();
+    */
+
+                    /* TEST Machine CLASS */
+
+    /*    Machine tank = new Machine.Builder()
+                .fuel(50)
+                .name("Panther 3")
+                .engine_name("RV-100")
+                .force_power(6000)
+                .build();
+
+        tank.info();
+        tank.fill(50);
+        tank.start();
+        tank.info();
+    */
+
 
 
 //            CruiseShip Victoria = CruiseShip.builder()
@@ -23,11 +40,7 @@ public class API {
 //            Victoria.info();
 
 
-//                Machine tank = new Machine().builder()
-//                        .fuel(50)
-//                        .name("Panther 3")
-//                        .engine(RV)
-//                        .build();
+
 
         }
 
