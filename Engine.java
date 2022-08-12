@@ -1,13 +1,50 @@
 import lombok.Builder;
-@Builder
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
+
 public class Engine
 {
-    String name;
-    Integer force_power;
+    private String name;
+    private Integer force_power;
+    private boolean started;
 
-    boolean started;
 
+    public String getName() {
+        return name;
+    }
 
+    public Integer getForce_power() {
+        return force_power;
+    }
+    private Engine(@NotNull Builder builder){
+        this.name = Objects.requireNonNull(builder.name, "name");
+        this.started = Objects.requireNonNull(builder.started, "Started?");
+        this.force_power = Objects.requireNonNull(builder.force_power, "Force power");
+    }
+
+    public static class Builder
+    {
+        private String name;
+        private Integer force_power;
+        private boolean started;
+
+        public Builder force_power (Integer force_power){
+            this.force_power = force_power;
+            return this;
+        }
+        public Builder name(String name)
+        {
+            this.name = name;
+            return this;
+        }
+        public Builder started(boolean started)
+        {
+            this.started = started;
+            return this;
+        }
+         public Engine build() { return  new Engine(this); }
+    }
     // These constructors were replaced by a special @Builder.
 
 //    Engine()
