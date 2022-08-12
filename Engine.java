@@ -7,8 +7,9 @@ public class Engine
 {
     private String name;
     private Integer force_power;
-    private boolean started;
+    private boolean started = false;
 
+    // Getters, Setters, constructors
 
     public String getName() {
         return name;
@@ -17,10 +18,14 @@ public class Engine
     public Integer getForce_power() {
         return force_power;
     }
+
+    public boolean isStarted() {
+        return started;
+    }
     private Engine(@NotNull Builder builder){
-        this.name = Objects.requireNonNull(builder.name, "name");
-        this.started = Objects.requireNonNull(builder.started, "Started?");
-        this.force_power = Objects.requireNonNull(builder.force_power, "Force power");
+        this.name = builder.name;
+        this.started = builder.started;
+        this.force_power = builder.force_power;
     }
 
     public static class Builder
@@ -68,6 +73,8 @@ public class Engine
 //        this.force_power = force_power;
 //
 //    }
+
+
 
     public void start()
     {
