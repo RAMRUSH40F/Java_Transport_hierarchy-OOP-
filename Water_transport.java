@@ -1,17 +1,11 @@
-import lombok.Builder;
-
-@Builder
 public abstract class Water_transport extends Machine
 {
-    Integer tonnage, maximumDistance;
-    String location, name;
-    boolean sailedAway;
-    int fuel = 150;
-    Engine engine;
+    protected Integer tonnage, maximumDistance;
+    protected String location;
+    private boolean sailedAway;
 
 
-
-    public void goSailing(String location)
+    final public void sail(String location)
     {
         System.out.println(name+" goes from "+this.location+" to " +location);
         this.location = location;
@@ -22,12 +16,12 @@ public abstract class Water_transport extends Machine
     public void info()
     {
         super.info();
-        System.out.println(". Fuel: "+this.fuel+". Tonnage: "+this.tonnage +". Max distance: "+this.maximumDistance);
+        System.out.println("Tonnage: "+this.tonnage +". Max distance: "+this.maximumDistance);
 
         if (this.sailedAway)
-            System.out.println("In sail to "+this.location);
+            System.out.println("On the way to "+this.location);
         else
-            System.out.println("In a port of "+this.location);
+            System.out.println("In "+this.location);
 
 
     }

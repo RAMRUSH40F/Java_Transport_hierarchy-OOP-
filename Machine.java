@@ -1,35 +1,31 @@
-import lombok.Builder;
-
 import java.util.Objects;
 
 public class Machine {
 
-    private final String name;
-    private int fuel = 150;
-    private Engine engine;
+    protected String name;
+    protected int fuel;
+    protected Engine engine;
 
     public String getName() {
+        if (Objects.isNull(this.name)) return "null";
         return name;
-    }
-
-    public Engine getEngine() {
-        return engine;
     }
 
     public int getFuel() {
         return fuel;
     }
-
-    private Machine(Builder builder){
+    Machine(){
+    }
+    protected  Machine(Builder builder){
         this.name = Objects.requireNonNull(builder.name, "name");
-        this.fuel = Objects.requireNonNull(builder.fuel, "fuel_amount");
+        this.fuel = builder.fuel;
         this.engine = builder.engine;
     }
 
     public static class Builder
     {
         private String name;
-        private int fuel = 150;
+        private Integer fuel = 150;
         private Engine engine;
         private String engine_name;
         private Integer force_power;
@@ -52,14 +48,6 @@ public class Machine {
             this.force_power = force_power;
             return this;
         }
-//        public Builder engine_name(String name, Integer force_power)
-//        {
-//            this.engine = new Engine.Builder()
-//                    .force_power(force_power)
-//                    .name(name)
-//                    .build();
-//            return this;
-//        }
 
         public Machine build(){
             this.engine = new Engine.Builder()
@@ -72,8 +60,9 @@ public class Machine {
 
     public void fill(int gasAmount)
     {
+        System.out.println(this.name + " filled with gas. "+Integer.toString(fuel)+" -> "+Integer.toString(fuel+200));
         fuel += 200;
-        System.out.println(name+" filled up with gas.");
+
     }
 
     public void start()
@@ -92,8 +81,8 @@ public class Machine {
     public void info()
     {
         System.out.println("Name: "+this.getName()+". Fuel: "+this.getFuel());
-
-        System.out.println("Engine: "+this.engine.getName()+". Force: "+this.engine.getForce_power());
+        if (Objects.nonNull(this.engine))
+            System.out.println("Engine: "+this.engine.getName()+". Force: "+this.engine.getForce_power());
     }
 
 

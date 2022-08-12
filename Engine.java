@@ -12,6 +12,7 @@ public class Engine
     // Getters, Setters, constructors
 
     public String getName() {
+        if (Objects.isNull(this.name)) return "Not_stated";
         return name;
     }
 
