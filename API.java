@@ -29,17 +29,25 @@ public class API {
     */
 
 
+                /* TEST CruiseShip CLASS */
+            CruiseShip Victoria = new CruiseShip.Builder()
+                    .numPeople(0)
+                    .location("San-francisco")
+                    .tonnage(12000)
+                    .name("Victoria")
+                    .maximumDistance(500)
+                    .engine_name("RPV-50")
+                    .force_power(600)
 
-//            CruiseShip Victoria = CruiseShip.builder()
-//                    .numPeople(0)
-//                    .sailedAway(false)
-//                    .location("San-francisco")
-//                    .tonnage(12000)
-//                    .build();
-//
-//            Victoria.info();
+                    .build();
 
+            Victoria.info();
+            Victoria.fill(150);
+            Victoria.getOnBoard(25);
+            Victoria.getOffBoard(30);
 
+            Victoria.getOnBoard(50);
+            Victoria.sail("New-York");
 
 
         }
