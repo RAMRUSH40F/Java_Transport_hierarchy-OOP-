@@ -1,28 +1,90 @@
-import lombok.Builder;
+import java.util.Objects;
 
-@Builder
 public class CruiseShip extends Water_transport
 {
-    private int capacity = this.tonnage / 100;
+    private final Integer capacity;
     private int numPeople;
 
-    private Integer tonnage, maximumDistance;
-    private String location;
-    private boolean sailedAway;
+    private CruiseShip(Builder builder)
+    {
+        this.name = Objects.requireNonNull(builder.name,"name");
+        this.engine = builder.engine;
+        this.capacity = Objects.requireNonNull(builder.capacity);
+        this.location = builder.location;
+        this.tonnage = Objects.requireNonNull(builder.tonnage, "tonnage");
+        this.fuel = builder.fuel;
+        this.maximumDistance = Objects.requireNonNull(builder.maximumDistance);
+    }
 
+    public static class Builder
+    {
+        private String name;
+        private Integer fuel = 150;
+        private Integer capacity;
+
+        private Integer tonnage, maximumDistance;
+        private String location;
+        private boolean sailedAway = false;
+
+        private Engine engine;
+        private String engine_name;
+        private Integer force_power;
+
+
+        public Builder name(String name){
+            this.name = name;
+            return this;
+        }
+        public Builder tonnage(Integer tonnage){
+            this.tonnage = tonnage;
+            return this;
+        }
+        public Builder maximumDistance(Integer maximumDistance){
+            this.maximumDistance = maximumDistance;
+            return this;
+        }
+        public Builder location(String location){
+            this.location = location;
+            return this;
+        }
+        public Builder numPeople(Integer numPeople){
+            int numPeople1 = numPeople;
+            return this;
+        }
+        public Builder engine_name(String engine_name){
+            this.engine_name = engine_name;
+            return this;
+        }
+        public Builder force_power (Integer force_power){
+            this.force_power = force_power;
+            return this;
+        }
+
+        public CruiseShip build()
+        {
+            Engine engine = new Engine.Builder()
+                    .name(this.engine_name)
+                    .force_power(this.force_power)
+                    .build();
+            if (Objects.nonNull(this.tonnage)) this.capacity = this.tonnage/100;
+            return new CruiseShip(this);
+        }
+    }
 
 
 
     public void getOnBoard(int num_people)
     {
         int temp = this.numPeople + num_people;
+
         if(temp>this.capacity) {
             System.out.println(Integer.toString(num_people - temp + capacity)
                     + " out of " + num_people +
-                    " got on the board. The ship is full.");
+                    " got on the board. The ship is FULL.");
             this.numPeople = capacity;
         }
         else
+            System.out.println("People got ON board: " + Integer.toString(this.numPeople)+" -> "+ Integer.toString(temp));
             this.numPeople = temp;
 
     }
@@ -30,13 +92,19 @@ public class CruiseShip extends Water_transport
     public void getOffBoard(int num_people){
         int temp = this.numPeople - num_people;
         if(temp<0) {
-            System.out.println(Integer.toString(this.numPeople) +" got off the " +this.name + " The ship is empty.");
+            System.out.println(Integer.toString(this.numPeople) +" people got OFF the " +this.name + ". The ship is EMPTY.");
             this.numPeople = 0;
         }
         else{
-            System.out.println(Integer.toString(num_people) +" got off the " +this.name+".");
+            System.out.println("People got OFF board: " + Integer.toString(this.numPeople)+" -> "+ Integer.toString(temp)+".");
             this.numPeople = temp;
         }
 
+    }
+
+    @Override
+    public void info() {
+        super.info();
+        System.out.println("People in board: " + Integer.toString(this.numPeople)+" Capacity: "+ this.capacity);
     }
 }
