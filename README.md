@@ -13,13 +13,12 @@ Interfaces:
 + military technics interface 
 
 Nearest Future:
-water transport -> aircraft carrier (has airctaft in it)
+Surface transport-> public transport interface(like cruiseship) -- done
 
-Surface transport-> public transport interface(like cruiseship)
-
+military_interface ( shoot, destroy, reload)  --current
 
 machine -> aircraft
+water transport -> aircraft carrier with its guns (has airctaft in it).
 machine -> tank
 
-military_interface ( shoot, destroy, reload)
 
