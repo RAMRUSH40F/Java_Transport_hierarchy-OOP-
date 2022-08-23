@@ -30,7 +30,8 @@ public class API {
 
 
                 /* TEST CruiseShip CLASS */
-            CruiseShip Victoria = new CruiseShip.Builder()
+       /*
+        CruiseShip Victoria = new CruiseShip.Builder()
                     .numPeople(0)
                     .location("San-francisco")
                     .tonnage(12000)
@@ -48,6 +49,28 @@ public class API {
 
             Victoria.getOnBoard(50);
             Victoria.sail("New-York");
+    */
+            /* TEST Public_trasport CLASS */
+
+        Public_transport Bus = new Public_transport.Builder()
+                .numPeople(0)
+                .location("Leninskiy_avenue")
+                .tonnage(12000)
+                .name("Bus")
+                .maximumDistance(500)
+                .engine_name("Volga-530")
+                .force_power(600)
+                .fuelConsumption(30)
+
+                .build();
+
+        Bus.info();
+        Bus.fill(150);
+        Bus.getOnBoard(25);
+        Bus.getOffBoard(30);
+
+        Bus.getOnBoard(50);
+
 
 
         }
