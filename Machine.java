@@ -1,16 +1,20 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Machine {
 
-    protected     String name;
-    protected     int    fuel;
-    protected     Engine engine;
-    static        int    counter;
-    private final int    id;
+    protected String name;
+    protected int    fuel;
+    protected Engine engine;
+
+    static final         int                DEFAULT_HP  = 100;
+    private static final ArrayList<Integer> healthPoint = new ArrayList<>(List.of(0));
+    private final        int                id;
 
     Machine() {
-        counter++;
-        this.id = counter;
+        this.id = healthPoint.size();
+        healthPoint.add(DEFAULT_HP);
     }
 
     protected Machine(Builder builder) {
@@ -18,8 +22,10 @@ public class Machine {
         this.fuel = builder.fuel;
         this.engine = builder.engine;
 
-        counter++;
-        this.id = counter;
+        this.id = healthPoint.size();
+
+        healthPoint.add((Objects.nonNull(builder.healthpoint)) ? builder.healthpoint : DEFAULT_HP);
+
     }
 
     @Override
@@ -27,6 +33,7 @@ public class Machine {
 
         return Objects.toString(this.getClass()).substring(6) + " " + this.getName() + ": " + this.hashCode();
     }
+
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Machine))
@@ -39,7 +46,6 @@ public class Machine {
     public int hashCode() {
         return id + 1923;
     }
-
 
     public void fill(int gasAmount) {
         System.out.println(this.name + " filled with gas. " + fuel + " -> " + (fuel + 200));
@@ -54,7 +60,7 @@ public class Machine {
     }
 
     public static int getNumOfInstances() {
-        return counter;
+        return healthPoint.size() - 1;
     }
 
     public void stop() {
@@ -76,6 +82,14 @@ public class Machine {
         return id;
     }
 
+    public static ArrayList<Integer> getHealthPoint() {
+        return healthPoint;
+    }
+
+    public void setHealthPoint(int new_value) {
+        healthPoint.set(this.getId(), new_value);
+    }
+
     public void info() {
         System.out.println("Name: " + this.getName() + ". Fuel: " + this.getFuel());
         if (Objects.nonNull(this.engine))
@@ -88,6 +102,7 @@ public class Machine {
         private Engine  engine;
         private String  engine_name;
         private Integer force_power;
+        private Integer healthpoint;
 
         public Builder name(String name) {
             this.name = name;
@@ -107,6 +122,11 @@ public class Machine {
 
         public Builder force_power(Integer force_power) {
             this.force_power = force_power;
+            return this;
+        }
+
+        public Builder healthpoint(Integer value) {
+            this.healthpoint = value;
             return this;
         }
 
