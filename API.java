@@ -2,12 +2,12 @@ public class API {
     public static void main(String[] args) {
 
         /* TEST Engine CLASS */
-        /* Engine LexusRT20 = new Engine.Builder()
+        Engine LexusRT20 = new Engine.Builder()
                 .name("LexusRT20")
                 .force_power(600)
                 .started(false)
                 .build();
-
+    /*
         LexusRT20.start();
         LexusRT20.info();
         LexusRT20.stop();
@@ -30,7 +30,7 @@ public class API {
 
 
                 /* TEST CruiseShip CLASS */
-       /*
+
         CruiseShip Victoria = new CruiseShip.Builder()
                     .numPeople(0)
                     .location("San-francisco")
@@ -39,9 +39,8 @@ public class API {
                     .maximumDistance(500)
                     .engine_name("RPV-50")
                     .force_power(600)
-
                     .build();
-
+    /*
             Victoria.info();
             Victoria.fill(150);
             Victoria.getOnBoard(25);
@@ -64,12 +63,12 @@ public class API {
 
                 .build();
 
-        Bus.info();
-        Bus.fill(150);
-        Bus.getOnBoard(25);
-        Bus.getOffBoard(30);
+//        Bus.info();
+//        Bus.fill(150);
+//        Bus.getOnBoard(25);
+//        Bus.getOffBoard(30);
 
-        Bus.getOnBoard(50);
+//        Bus.getOnBoard(50);
 
         // Test Machine hashcode, equals, toString methods.
         Machine Tank = new Machine.Builder()
@@ -78,11 +77,12 @@ public class API {
                 .engine_name("RV-100")
                 .force_power(6000)
                 .build();
-
-        System.out.println(Tank == Bus);
-        System.out.println(Bus);
-        System.out.println(Tank.getId());
-        System.out.println(Bus.getId());
+        System.out.println(Machine.getHealthPoint());
+        System.out.println(Machine.getNumOfInstances());
+//        System.out.println(Tank == Bus);
+//        System.out.println(Bus);
+//        System.out.println(Tank.getId());
+//        System.out.println(Bus.getId());
 
     }
 
