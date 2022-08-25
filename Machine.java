@@ -2,40 +2,90 @@ import java.util.Objects;
 
 public class Machine {
 
-    protected String name;
-    protected int fuel;
-    protected Engine engine;
+    static        int    counter;
+    private final int    id;
+    protected     String name;
+    protected     int    fuel;
+    protected     Engine engine;
+
+    Machine() {
+        counter++;
+        this.id = counter;
+    }
+
+    protected Machine(Builder builder) {
+        this.name = Objects.requireNonNull(builder.name, "name");
+        this.fuel = builder.fuel;
+        this.engine = builder.engine;
+
+        counter++;
+        this.id = counter;
+    }
+
+    public static int getNumOfInstances() {
+        return counter;
+    }
 
     public String getName() {
-        if (Objects.isNull(this.name)) return "null";
+        if (Objects.isNull(this.name))
+            return "null";
         return name;
+    }
+
+    @Override
+    public String toString() {
+
+        return Objects.toString(this.getClass()).substring(6) + " " + this.getName() + ": " + this.hashCode();
     }
 
     public int getFuel() {
         return fuel;
     }
-    Machine(){
-    }
-    protected  Machine(Builder builder){
-        this.name = Objects.requireNonNull(builder.name, "name");
-        this.fuel = builder.fuel;
-        this.engine = builder.engine;
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Machine))
+            return false;
+        return this.hashCode() == obj.hashCode();
+
     }
 
-    public static class Builder
-    {
-        private String name;
+    @Override
+    public int hashCode() {
+        return id + 1923;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void fill(int gasAmount) {
+        System.out.println(this.name + " filled with gas. " + fuel + " -> " + (fuel + 200));
+        fuel += 200;
+
+    }
+
+    public void start() {
+        System.out.println("Turn a key!");
+        engine.start();
+        fuel -= 50;
+    }
+
+    public static class Builder {
+        private String  name;
         private Integer fuel = 150;
-        private Engine engine;
-        private String engine_name;
+        private Engine  engine;
+        private String  engine_name;
         private Integer force_power;
 
-        public Builder name (String name){
+        public Builder name(String name) {
             this.name = name;
             return this;
         }
-        public Builder fuel (int fuel){
-            if (fuel>0) this.fuel = fuel;
+
+        public Builder fuel(int fuel) {
+            if (fuel > 0)
+                this.fuel = fuel;
             return this;
         }
         public Builder engine_name(String name)
@@ -49,27 +99,13 @@ public class Machine {
             return this;
         }
 
-        public Machine build(){
+        public Machine build() {
             this.engine = new Engine.Builder()
                     .name(this.engine_name)
                     .force_power(force_power)
                     .build();
-            return new Machine(this); }
-    }
-
-
-    public void fill(int gasAmount)
-    {
-        System.out.println(this.name + " filled with gas. "+Integer.toString(fuel)+" -> "+Integer.toString(fuel+200));
-        fuel += 200;
-
-    }
-
-    public void start()
-    {
-        System.out.println("Turn a key!");
-        engine.start();
-        fuel -= 50;
+            return new Machine(this);
+        }
     }
 
     public void stop()
