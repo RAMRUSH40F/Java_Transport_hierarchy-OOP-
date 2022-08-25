@@ -2,11 +2,11 @@ import java.util.Objects;
 
 public class Machine {
 
-    static        int    counter;
-    private final int    id;
     protected     String name;
     protected     int    fuel;
     protected     Engine engine;
+    static        int    counter;
+    private final int    id;
 
     Machine() {
         counter++;
@@ -22,26 +22,11 @@ public class Machine {
         this.id = counter;
     }
 
-    public static int getNumOfInstances() {
-        return counter;
-    }
-
-    public String getName() {
-        if (Objects.isNull(this.name))
-            return "null";
-        return name;
-    }
-
     @Override
     public String toString() {
 
         return Objects.toString(this.getClass()).substring(6) + " " + this.getName() + ": " + this.hashCode();
     }
-
-    public int getFuel() {
-        return fuel;
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Machine))
@@ -55,9 +40,6 @@ public class Machine {
         return id + 1923;
     }
 
-    public int getId() {
-        return id;
-    }
 
     public void fill(int gasAmount) {
         System.out.println(this.name + " filled with gas. " + fuel + " -> " + (fuel + 200));
@@ -69,6 +51,35 @@ public class Machine {
         System.out.println("Turn a key!");
         engine.start();
         fuel -= 50;
+    }
+
+    public static int getNumOfInstances() {
+        return counter;
+    }
+
+    public void stop() {
+        System.out.println("Light are turned off");
+        engine.stop();
+    }
+
+    public String getName() {
+        if (Objects.isNull(this.name))
+            return "null";
+        return name;
+    }
+
+    public int getFuel() {
+        return fuel;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void info() {
+        System.out.println("Name: " + this.getName() + ". Fuel: " + this.getFuel());
+        if (Objects.nonNull(this.engine))
+            System.out.println("Engine: " + this.engine.getName() + ". Force: " + this.engine.getForce_power());
     }
 
     public static class Builder {
@@ -88,13 +99,13 @@ public class Machine {
                 this.fuel = fuel;
             return this;
         }
-        public Builder engine_name(String name)
-        {
+
+        public Builder engine_name(String name) {
             this.engine_name = name;
             return this;
         }
-        public Builder force_power(Integer force_power)
-        {
+
+        public Builder force_power(Integer force_power) {
             this.force_power = force_power;
             return this;
         }
@@ -107,24 +118,6 @@ public class Machine {
             return new Machine(this);
         }
     }
-
-    public void stop()
-    {
-        System.out.println("Light are turned off");
-        engine.stop();
-    }
-
-    public void info()
-    {
-        System.out.println("Name: "+this.getName()+". Fuel: "+this.getFuel());
-        if (Objects.nonNull(this.engine))
-            System.out.println("Engine: "+this.engine.getName()+". Force: "+this.engine.getForce_power());
-    }
-
-
-
-
-
 
 }
 
