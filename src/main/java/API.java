@@ -1,7 +1,7 @@
 public class API {
     public static void main(String[] args) {
 
-        /* TEST Engine CLASS */
+        /* TEST src.main.java.Engine CLASS */
         Engine LexusRT20 = new Engine.Builder()
                 .name("LexusRT20")
                 .force_power(600)
@@ -13,9 +13,9 @@ public class API {
         LexusRT20.stop();
     */
 
-                    /* TEST Machine CLASS */
+        /* TEST src.main.java.Machine CLASS */
 
-    /*    Machine tank = new Machine.Builder()
+    /*    src.main.java.Machine tank = new src.main.java.Machine.Builder()
                 .fuel(50)
                 .name("Panther 3")
                 .engine_name("RV-100")
@@ -29,7 +29,7 @@ public class API {
     */
 
 
-                /* TEST CruiseShip CLASS */
+        /* TEST src.main.java.CruiseShip CLASS */
 
         CruiseShip Victoria = new CruiseShip.Builder()
                     .numPeople(0)
@@ -49,7 +49,7 @@ public class API {
             Victoria.getOnBoard(50);
             Victoria.sail("New-York");
     */
-        /* TEST Public_transport CLASS */
+        /* TEST src.main.java.Public_transport CLASS */
 
         Public_transport Bus = new Public_transport.Builder()
                 .numPeople(0)
@@ -70,7 +70,7 @@ public class API {
 
 //        Bus.getOnBoard(50);
 
-        // Test Machine hashcode, equals, toString methods.
+        // Test src.main.java.Machine hashcode, equals, toString methods.
         Machine Tank = new Machine.Builder()
                 .fuel(50)
                 .name("Panther 3")

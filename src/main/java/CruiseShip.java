@@ -7,7 +7,7 @@ public class CruiseShip extends Water_transport
 
     private CruiseShip(Builder builder)
     {
-        this.name = Objects.requireNonNull(builder.name,"name");
+        this.name = Objects.requireNonNull(builder.name, "name");
         this.engine = builder.engine;
         this.capacity = Objects.requireNonNull(builder.capacity);
         this.location = builder.location;
@@ -16,22 +16,60 @@ public class CruiseShip extends Water_transport
         this.maximumDistance = Objects.requireNonNull(builder.maximumDistance);
     }
 
+    public void getOnBoard(int num_people)
+    {
+        int temp = this.numPeople + num_people;
+
+        if (temp > this.capacity)
+        {
+            System.out.println(num_people - temp + capacity
+                    + " out of " + num_people +
+                    " got on the board. The ship is FULL.");
+            this.numPeople = capacity;
+        } else
+            System.out.println("People got ON board: " + this.numPeople + " -> " + temp);
+        this.numPeople = temp;
+
+    }
+
+    public void getOffBoard(int num_people)
+    {
+        int temp = this.numPeople - num_people;
+        if (temp < 0)
+        {
+            System.out.println(this.numPeople + " people got OFF the " + this.name + ". The ship is EMPTY.");
+            this.numPeople = 0;
+        } else
+        {
+            System.out.println("People got OFF board: " + this.numPeople + " -> " + temp + ".");
+            this.numPeople = temp;
+        }
+
+    }
+
+    @Override
+    public void info()
+    {
+        super.info();
+        System.out.println("People in board: " + this.numPeople + " Capacity: " + this.capacity);
+    }
+
     public static class Builder
     {
-        private String name;
-        private Integer fuel = 150;
-        private Integer capacity;
+        private final Integer fuel       = 150;
+        private final boolean sailedAway = false;
+        private       String  name;
 
         private Integer tonnage, maximumDistance;
-        private String location;
-        private boolean sailedAway = false;
+        private Integer capacity;
+        private String  location;
 
-        private Engine engine;
-        private String engine_name;
+        private Engine  engine;
+        private String  engine_name;
         private Integer force_power;
 
-
-        public Builder name(String name){
+        public Builder name(String name)
+        {
             this.name = name;
             return this;
         }
@@ -69,42 +107,5 @@ public class CruiseShip extends Water_transport
             if (Objects.nonNull(this.tonnage)) this.capacity = this.tonnage/100;
             return new CruiseShip(this);
         }
-    }
-
-
-
-    public void getOnBoard(int num_people)
-    {
-        int temp = this.numPeople + num_people;
-
-        if(temp>this.capacity) {
-            System.out.println(Integer.toString(num_people - temp + capacity)
-                    + " out of " + num_people +
-                    " got on the board. The ship is FULL.");
-            this.numPeople = capacity;
-        }
-        else
-            System.out.println("People got ON board: " + Integer.toString(this.numPeople)+" -> "+ Integer.toString(temp));
-            this.numPeople = temp;
-
-    }
-
-    public void getOffBoard(int num_people){
-        int temp = this.numPeople - num_people;
-        if(temp<0) {
-            System.out.println(Integer.toString(this.numPeople) +" people got OFF the " +this.name + ". The ship is EMPTY.");
-            this.numPeople = 0;
-        }
-        else{
-            System.out.println("People got OFF board: " + Integer.toString(this.numPeople)+" -> "+ Integer.toString(temp)+".");
-            this.numPeople = temp;
-        }
-
-    }
-
-    @Override
-    public void info() {
-        super.info();
-        System.out.println("People in board: " + Integer.toString(this.numPeople)+" Capacity: "+ this.capacity);
     }
 }

@@ -93,7 +93,8 @@ public class Machine {
     public void info() {
         System.out.println("Name: " + this.getName() + ". Fuel: " + this.getFuel());
         if (Objects.nonNull(this.engine))
-            System.out.println("Engine: " + this.engine.getName() + ". Force: " + this.engine.getForce_power());
+            System.out.println(
+                    "src.main.java.Engine: " + this.engine.getName() + ". Force: " + this.engine.getForce_power());
     }
 
     public static class Builder {

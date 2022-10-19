@@ -1,21 +1,22 @@
 import java.util.Objects;
-import java.util.concurrent.RecursiveTask;
 
 public class Workday
 {
-    private boolean isStarted;
-    private Integer fuelConsumption;
-    private int fuel;
+    private final Integer fuelConsumption;
+    private       boolean isStarted;
+    private       int     fuel;
 
     public void start(int duration_hours)
     {
         System.out.println("Working day has started");
-        fuel -= fuelConsumption*duration_hours;
+        fuel -= fuelConsumption * duration_hours;
         isStarted = true;
 
-        try {
+        try
+        {
             Thread.sleep(6000);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e)
+        {
             e.printStackTrace();
         }
         end();

@@ -5,7 +5,6 @@ public abstract class Surface_transport extends Machine
 
     protected boolean on_the_way = false;
 
-
     final public void driveTo(String location)
     {
         System.out.println(name+" started a route from "+this.location+" to "+location);

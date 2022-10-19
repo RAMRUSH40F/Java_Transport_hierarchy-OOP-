@@ -1,22 +1,24 @@
-import lombok.Builder;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
 public class Engine
 {
-    private String name;
-    private Integer force_power;
-    private boolean started = false;
+    private final String  name;
+    private final Integer force_power;
+    private       boolean started = false;
 
     // Getters, Setters, constructors
 
-    public String getName() {
-        if (Objects.isNull(this.name)) return "Not_stated";
+    public String getName()
+    {
+        if (Objects.isNull(this.name))
+            return "Not_stated";
         return name;
     }
 
-    public Integer getForce_power() {
+    public Integer getForce_power()
+    {
         return force_power;
     }
 
@@ -53,23 +55,23 @@ public class Engine
     }
     // These constructors were replaced by a special @Builder.
 
-//    Engine()
+//    src.main.java.Engine()
 //    {
 //        this.name = "Unstated";
 //        this.force_power = null;
 //    }
-//    Engine(String name){
+//    src.main.java.Engine(String name){
 //        this.name = name;
 //        this.force_power = null;
 //
 //    }
 //
-//    Engine(Integer force_power){
+//    src.main.java.Engine(Integer force_power){
 //        this.name = "Unstated";
 //        this.force_power = force_power;
 //
 //    }
-//    Engine(String name, Integer force_power){
+//    src.main.java.Engine(String name, Integer force_power){
 //        this.name = name;
 //        this.force_power = force_power;
 //
@@ -81,11 +83,11 @@ public class Engine
     {
         if (!started)
         {
-        this.started  = true;
-        System.out.println("Engine started!");
+            this.started = true;
+            System.out.println("src.main.java.Engine started!");
         }
         else{
-            System.out.println("Engine is already working!");
+            System.out.println("src.main.java.Engine is already working!");
         }
     }
 
@@ -93,16 +95,17 @@ public class Engine
     {
         if (started)
         {
-            this.started  = false;
-            System.out.println("Engine stopped!");
+            this.started = false;
+            System.out.println("src.main.java.Engine stopped!");
         }
         else{
-            System.out.println("Engine is not working!");
+            System.out.println("src.main.java.Engine is not working!");
         }
     }
 
     public void info()
     {
-        System.out.println("Engine name: "+this.name+". Engine force: "+this.force_power);
+        System.out.println(
+                "src.main.java.Engine name: " + this.name + ". src.main.java.Engine force: " + this.force_power);
     }
 }
