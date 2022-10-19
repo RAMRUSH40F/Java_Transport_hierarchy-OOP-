@@ -46,48 +46,52 @@ public class Engine
             this.name = name;
             return this;
         }
+
         public Builder started(boolean started)
         {
             this.started = started;
             return this;
         }
-         public Engine build() { return  new Engine(this); }
+
+        public Engine build()
+        {
+            return new Engine(this);
+        }
     }
-    // These constructors were replaced by a special @Builder.
+    /*
+ These constructors have been replaced by a special @Builder.
+    src.main.java.Engine()
+    {
+        this.name = "Unstated";
+        this.force_power = null;
+    }
+    src.main.java.Engine(String name){
+        this.name = name;
+        this.force_power = null;
 
-//    src.main.java.Engine()
-//    {
-//        this.name = "Unstated";
-//        this.force_power = null;
-//    }
-//    src.main.java.Engine(String name){
-//        this.name = name;
-//        this.force_power = null;
-//
-//    }
-//
-//    src.main.java.Engine(Integer force_power){
-//        this.name = "Unstated";
-//        this.force_power = force_power;
-//
-//    }
-//    src.main.java.Engine(String name, Integer force_power){
-//        this.name = name;
-//        this.force_power = force_power;
-//
-//    }
+    }
 
+    src.main.java.Engine(Integer force_power){
+        this.name = "Unstated";
+        this.force_power = force_power;
 
+    }
+    src.main.java.Engine(String name, Integer force_power){
+        this.name = name;
+        this.force_power = force_power;
+
+    }
+*/
 
     public void start()
     {
         if (!started)
         {
             this.started = true;
-            System.out.println("src.main.java.Engine started!");
+            System.out.println("Engine started!");
         }
         else{
-            System.out.println("src.main.java.Engine is already working!");
+            System.out.println("Engine is already working!");
         }
     }
 
@@ -96,16 +100,16 @@ public class Engine
         if (started)
         {
             this.started = false;
-            System.out.println("src.main.java.Engine stopped!");
+            System.out.println("Engine stopped!");
         }
         else{
-            System.out.println("src.main.java.Engine is not working!");
+            System.out.println("Engine is not working!");
         }
     }
 
     public void info()
     {
         System.out.println(
-                "src.main.java.Engine name: " + this.name + ". src.main.java.Engine force: " + this.force_power);
+                "Engine name: " + this.name + ". Engine force: " + this.force_power);
     }
 }
