@@ -1,4 +1,7 @@
-public interface Military {
+package Abstractions;
+
+public interface Military
+{
     void shoot();
 
     void shoot(String name);

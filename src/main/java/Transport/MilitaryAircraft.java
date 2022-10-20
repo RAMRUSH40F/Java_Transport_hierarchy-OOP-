@@ -1,8 +1,14 @@
-public class Aircraft extends Machine implements Military {
+package Transport;
 
+import Abstractions.Aircraft;
+import Abstractions.Military;
+
+public class MilitaryAircraft extends Aircraft implements Military
+{
 
     @Override
-    public void shoot() {
+    public void shoot()
+    {
 
     }
 
