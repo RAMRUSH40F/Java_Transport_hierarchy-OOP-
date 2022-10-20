@@ -1,12 +1,20 @@
+package Transport;
+
+import Abstractions.Water_transport;
+import InnerObjects.Engine;
+
 import java.util.Objects;
 
 public class CruiseShip extends Water_transport
 {
     private final Integer capacity;
-    private int numPeople;
+    private       int     numPeople;
 
+    // Pattern Builder in order to make instances quickly.
     private CruiseShip(Builder builder)
     {
+        super();
+
         this.name = Objects.requireNonNull(builder.name, "name");
         this.engine = builder.engine;
         this.capacity = Objects.requireNonNull(builder.capacity);
@@ -14,22 +22,6 @@ public class CruiseShip extends Water_transport
         this.tonnage = Objects.requireNonNull(builder.tonnage, "tonnage");
         this.fuel = builder.fuel;
         this.maximumDistance = Objects.requireNonNull(builder.maximumDistance);
-    }
-
-    public void getOnBoard(int num_people)
-    {
-        int temp = this.numPeople + num_people;
-
-        if (temp > this.capacity)
-        {
-            System.out.println(num_people - temp + capacity
-                    + " out of " + num_people +
-                    " got on the board. The ship is FULL.");
-            this.numPeople = capacity;
-        } else
-            System.out.println("People got ON board: " + this.numPeople + " -> " + temp);
-        this.numPeople = temp;
-
     }
 
     public void getOffBoard(int num_people)
@@ -54,6 +46,23 @@ public class CruiseShip extends Water_transport
         System.out.println("People in board: " + this.numPeople + " Capacity: " + this.capacity);
     }
 
+    // Change number of people on the ship(not in a sail).
+    public void getOnBoard(int num_people)
+    {
+        int temp = this.numPeople + num_people;
+
+        if (temp > this.capacity)
+        {
+            System.out.println(num_people - temp + capacity
+                    + " out of " + num_people +
+                    " got on the board. The ship is FULL.");
+            this.numPeople = capacity;
+        } else
+            System.out.println("People got ON board: " + this.numPeople + " -> " + temp);
+        this.numPeople = temp;
+
+    }
+
     public static class Builder
     {
         private final Integer fuel       = 150;
@@ -73,26 +82,32 @@ public class CruiseShip extends Water_transport
             this.name = name;
             return this;
         }
+
         public Builder tonnage(Integer tonnage){
             this.tonnage = tonnage;
             return this;
         }
+
         public Builder maximumDistance(Integer maximumDistance){
             this.maximumDistance = maximumDistance;
             return this;
         }
+
         public Builder location(String location){
             this.location = location;
             return this;
         }
+
         public Builder numPeople(Integer numPeople){
             int numPeople1 = numPeople;
             return this;
         }
+
         public Builder engine_name(String engine_name){
             this.engine_name = engine_name;
             return this;
         }
+
         public Builder force_power (Integer force_power){
             this.force_power = force_power;
             return this;
@@ -100,7 +115,7 @@ public class CruiseShip extends Water_transport
 
         public CruiseShip build()
         {
-            Engine engine = new Engine.Builder()
+            engine = new Engine.Builder()
                     .name(this.engine_name)
                     .force_power(this.force_power)
                     .build();

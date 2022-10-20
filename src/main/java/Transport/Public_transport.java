@@ -1,13 +1,23 @@
+package Transport;
+
+import Abstractions.Surface_transport;
+import InnerObjects.Engine;
+import InnerObjects.Workday;
+
 import java.util.Objects;
 
-public class Public_transport extends Surface_transport {
+public class Public_transport extends Surface_transport
+{
 
     private final Workday work;
     private final Integer capacity;
-    protected     Integer tonnage;
+    private final Integer tonnage;
     private       int     numPeople;
+    private final Engine  engine;
 
-    private Public_transport(Builder builder) {
+    // Pattern builder.
+    private Public_transport(Builder builder)
+    {
         this.name = Objects.requireNonNull(builder.name, "name");
         this.engine = builder.engine;
         this.capacity = Objects.requireNonNull(builder.capacity);
@@ -16,21 +26,6 @@ public class Public_transport extends Surface_transport {
         this.fuel = builder.fuel;
         this.maximumDistance = Objects.requireNonNull(builder.maximumDistance);
         this.work = builder.work;
-    }
-
-    public void getOnBoard(int num_people) {
-        int temp = this.numPeople + num_people;
-
-        if (temp > this.capacity) {
-            System.out.printf(num_people - temp + capacity
-                    + " out of " + num_people +
-                    " got on the board. The \s is FULL.\n", this.name);
-            this.numPeople = capacity;
-        } else
-            System.out.println("People got ON board: "
-                    + this.numPeople + " -> " + temp);
-        this.numPeople = temp;
-
     }
 
     public void getOffBoard(int num_people) {
@@ -47,12 +42,32 @@ public class Public_transport extends Surface_transport {
     }
 
     @Override
-    public void info() {
+    public void info()
+    {
         super.info();
         System.out.println("People in board: " + this.numPeople + " Capacity: " + this.capacity);
     }
 
-    public static class Builder {
+    // Change number of people on the ship.
+    public void getOnBoard(int num_people)
+    {
+        int temp = this.numPeople + num_people;
+
+        if (temp > this.capacity)
+        {
+            System.out.printf(num_people - temp + capacity
+                    + " out of " + num_people +
+                    " got on the board. The \s is FULL.\n", this.name);
+            this.numPeople = capacity;
+        } else
+            System.out.println("People got ON board: "
+                    + this.numPeople + " -> " + temp);
+        this.numPeople = temp;
+
+    }
+
+    public static class Builder
+    {
         private final Integer fuel       = 90;
         private final boolean sailedAway = false;
         private       String  name, location, engine_name;
@@ -105,7 +120,7 @@ public class Public_transport extends Surface_transport {
         }
 
         public Public_transport build() {
-            Engine engine = new Engine.Builder()
+            engine = new Engine.Builder()
                     .name(this.engine_name)
                     .force_power(this.force_power)
                     .build();
