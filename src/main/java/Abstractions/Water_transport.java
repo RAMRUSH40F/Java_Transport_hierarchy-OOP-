@@ -1,15 +1,16 @@
+package Abstractions;
+
 public abstract class Water_transport extends Machine
 {
     protected Integer tonnage, maximumDistance;
-    protected String location;
-    private boolean sailedAway;
+    protected String  location;
+    private   boolean sailedAway;
 
-
-    final public void sail(String location)
+    public void sail(String location)
     {
-        System.out.println(name+" goes from "+this.location+" to " +location);
+        System.out.println(name + " goes from " + this.location + " to " + location);
         this.location = location;
-        this.fuel -=50;
+        this.fuel -= 50;
     }
 
     @Override
@@ -23,9 +24,5 @@ public abstract class Water_transport extends Machine
         else
             System.out.println("In "+this.location);
 
-
     }
-
-
-
 }
