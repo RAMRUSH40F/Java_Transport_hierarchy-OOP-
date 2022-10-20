@@ -1,11 +1,17 @@
+import InnerObjects.Engine;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class EngineTest
 {
 
+    @BeforeEach
+    void setUp()
+    {
+
+    }
 
     @Test
     void start()
@@ -24,16 +30,6 @@ class EngineTest
         LexusRT20.start();
 
         assertNotNull(LexusRT20);
-        assertEquals(LexusRT20, LexusRT19);
     }
 
-    @Test
-    void stop()
-    {
-    }
-
-    @Test
-    void info()
-    {
-    }
 }
