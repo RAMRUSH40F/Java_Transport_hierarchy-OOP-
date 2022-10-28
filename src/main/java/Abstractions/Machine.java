@@ -51,57 +51,8 @@ public abstract class Machine
         fuel -= 50;
     }
 
-    /*
- Pattern Builder to create an instance quickly.
-    public static class Builder {
-        private String  name;
-        private Integer fuel = 150;
-        private Engine  engine;
-        private String  engine_name;
-        private Integer force_power;
-        private Integer healthPoint;
+//  Getters and setters.
 
-        public Builder name(String name) {
-            this.name = name;
-            return this;
-        }
-
-        public Builder fuel(int fuel) {
-            if (fuel > 0)
-                this.fuel = fuel;
-            return this;
-        }
-
-        public Builder engine_name(String name) {
-            this.engine_name = name;
-            return this;
-        }
-
-        public Builder force_power(Integer force_power) {
-            this.force_power = force_power;
-            return this;
-        }
-
-        public Builder healthpoint(Integer value) {
-            this.healthPoint = value;
-            return this;
-        }
-
-
-    }
-
-    protected Machine(Builder builder) {
-        this.name = Objects.requireNonNull(builder.name, "name");
-        this.fuel = builder.fuel;
-        this.engine = builder.engine;
-
-        this.id = healthPoint.size();
-
-        healthPoint.add((Objects.nonNull(builder.healthPoint)) ? builder.healthPoint : DEFAULT_HP);
-
-    }
-Getters and setters.
-*/
 
     public void stop()
     {
